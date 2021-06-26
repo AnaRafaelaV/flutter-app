@@ -1,0 +1,65 @@
+{
+    "project_info": {
+        "project_number": "121974561874",
+        "firebase_url": "https://bhealth-bclose.firebaseio.com",
+        "project_id": "bhealth-bclose",
+        "storage_bucket": "bhealth-bclose.appspot.com"
+    },
+    "client": [{
+        "client_info": {
+            "mobilesdk_app_id": "1:121974561874:android:decbb09489a0522557d38b",
+            "android_client_info": {
+                "package_name": "pt.bclose.bhealth"
+            }
+        },
+        "oauth_client": [{
+                "client_id": "121974561874-5vmkuj93uiukpoict9qetc2rijlvumjk.apps.googleusercontent.com",
+                "client_type": 1,
+                "android_info": {
+                    "package_name": "pt.bclose.bhealth",
+                    "certificate_hash": "9a89664963336818580a8284d5cee245f1e82d64"
+                }
+            },
+            {
+                "client_id": "121974561874-a02qadbbvigd1nigfct35mlgblfgs4hu.apps.googleusercontent.com",
+                "client_type": 1,
+                "android_info": {
+                    "package_name": "pt.bclose.bhealth",
+                    "certificate_hash": "0ec1a68638a89fcd4dd14ae9ec9222520f93e662"
+                }
+            },
+            {
+                "client_id": "121974561874-m3rslhvnqcot4sb6jt33s5lkuq9jpn17.apps.googleusercontent.com",
+                "client_type": 1,
+                "android_info": {
+                    "package_name": "pt.bclose.bhealth",
+                    "certificate_hash": "bcc11e432606dcb304ee52b95aec152dbb036ad3"
+                }
+            },
+            {
+                "client_id": "121974561874-d9lddm80napog4g6f41ll00t9fe4s0sq.apps.googleusercontent.com",
+                "client_type": 3
+            }
+        ],
+        "api_key": [{
+            "current_key": "AIzaSyAgo4PxLLWb66Gzer0zgXpJe7iyJ_zQ-Fc"
+        }],
+        "services": {
+            "appinvite_service": {
+                "other_platform_oauth_client": [{
+                        "client_id": "121974561874-d9lddm80napog4g6f41ll00t9fe4s0sq.apps.googleusercontent.com",
+                        "client_type": 3
+                    },
+                    {
+                        "client_id": "121974561874-ucfhbg8k2h07cuc0uvuns0kcecgpqmj8.apps.googleusercontent.com",
+                        "client_type": 2,
+                        "ios_info": {
+                            "bundle_id": "pt.bclose.bhealth"
+                        }
+                    }
+                ]
+            }
+        }
+    }],
+    "configuration_version": "1"
+}
