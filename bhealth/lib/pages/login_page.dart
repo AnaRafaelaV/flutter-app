@@ -1,3 +1,5 @@
+import 'package:bhealth/view_models/sign_in_view_model.dart';
+import 'package:bhealth/widgets/google_sign_in_button_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -8,6 +10,8 @@ class LogInPage extends StatefulWidget {
 }
 
 class _LogInPageState extends State<LogInPage> {
+  final SigInViewModel _sigInVM = SigInViewModel();
+
   Widget _buildBody() {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
@@ -21,12 +25,7 @@ class _LogInPageState extends State<LogInPage> {
           Spacer(
             flex: 2,
           ),
-          ElevatedButton(
-              child: Text("SigIn with Google"),
-              onPressed: () {
-                print("google");
-                //_doGoogleSignIn();
-              }),
+          GoogleButtonWidget(signInVM: _sigInVM),
           SizedBox(
             height: 15,
           ),
