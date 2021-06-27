@@ -16,7 +16,6 @@ class EnterEmailDialog extends StatelessWidget {
     if (_form.currentState!.validate()) {
       isRegistered =
           await _loginViewModel.isEmailRegistered(controllerEmail.text);
-      isRegistered = isRegistered != null;
       showDialog(
         context: context,
         barrierDismissible: true,

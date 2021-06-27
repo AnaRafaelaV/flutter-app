@@ -36,6 +36,6 @@ class LoginViewModel {
     final List<String> providers =
         await FirebaseAuth.instance.fetchSignInMethodsForEmail(email);
     isRegistered = providers == null || providers.isEmpty;
-    return isRegistered;
+    return !isRegistered;
   }
 }
