@@ -19,8 +19,7 @@ class LoginViewModel {
     );
     user = Users({"email": googleUser.email});
     _userViewModel = UserViewModel(user: user);
-    bool isSaved =
-        await _userViewModel.checkGoogleUserSaved(_userViewModel.email);
+    bool isSaved = await _userViewModel.checkGoogleUserSaved(googleUser.email);
     if (!isSaved) {
       await _userViewModel.saveUser();
     }
@@ -47,5 +46,13 @@ class LoginViewModel {
         await FirebaseAuth.instance.fetchSignInMethodsForEmail(email);
     isRegistered = providers == null || providers.isEmpty;
     return !isRegistered;
+  }
+
+  Future<bool> hasCurrentUser() async {
+    User user = await FirebaseAuth.instance.currentUser!;
+    if (user != null) {
+      return true;
+    }
+    return false;
   }
 }

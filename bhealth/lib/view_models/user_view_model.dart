@@ -14,18 +14,20 @@ class UserViewModel {
     return user.general["email"];
   }
 
-  bool checkGoogleUserSaved(String emailGoogle) {
+  Future<bool> checkGoogleUserSaved(String emailGoogle) async {
     bool isUserSaved = false;
-    FirebaseFirestore.instance
-        .collection("users")
-        .get()
-        .then((QuerySnapshot querySnapshot) {
-      querySnapshot.docs.forEach((doc) {
-        UserViewModel.fromSnapshot(doc);
+    final QuerySnapshot result =
+        await FirebaseFirestore.instance.collection("users").get();
+    final List<DocumentSnapshot> documents = result.docs;
+    documents.forEach((doc) {
+      try {
+        final email = doc.get("general")["email"];
         if (email == emailGoogle) {
           isUserSaved = true;
         }
-      });
+      } catch (e) {
+        print("ERROR - $e");
+      }
     });
     return isUserSaved;
   }
