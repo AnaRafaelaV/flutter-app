@@ -79,15 +79,18 @@ class _EnterPasswordDialogState extends State<EnterPasswordDialog> {
                 child: Column(children: <Widget>[
                   TextFormField(
                     obscureText: true,
+                    onChanged: (value) {
+                      message = "";
+                    },
                     controller: _pass,
                     autofocus: true,
+                    validator: (value) {
+                      if (message.isNotEmpty) {
+                        return message;
+                      }
+                    },
                     autocorrect: false,
                     decoration: new InputDecoration(labelText: "Password"),
-                  ),
-                  Spacer(),
-                  Text(
-                    message,
-                    style: TextStyle(fontSize: 11, color: Colors.red),
                   ),
                 ]),
               ),
