@@ -1,22 +1,32 @@
-import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-class User {
-  final String uid;
-  final String firstName;
-  final String lastName;
-  final String email;
-  final bool hasAdmission;
-  final bool inPrivate;
+class Users {
+  //final String uid;
+  //final String firstName;
+  //final String lastName;
+  //final String email;
+  //final bool hasAdmission;
+  //final bool inPrivate;
+  final Map<String, dynamic> general;
+  DocumentReference? reference;
 
-  var careTakers;
+  //var careTakers;
   //final List<CareTaker> careTakers;
 
-  User(
-      {required this.uid,
-      required this.firstName,
-      required this.lastName,
-      required this.email,
-      required this.hasAdmission,
-      //@required this.careTakers,
-      this.inPrivate = false});
+  Users(this.general, [this.reference]);
+
+  String get userId {
+    return reference!.id;
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      "general": general,
+    };
+  }
+
+  factory Users.fromSnapshot(QueryDocumentSnapshot doc) {
+    Map<String, dynamic> general = doc['general'];
+    return Users(general, doc.reference);
+  }
 }

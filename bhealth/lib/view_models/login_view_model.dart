@@ -1,9 +1,13 @@
+import 'package:bhealth/models/user.dart';
+import 'package:bhealth/view_models/user_view_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class LoginViewModel {
   String message = "";
+  late Users user;
   final GoogleSignIn _googleSignIn = GoogleSignIn();
+  late UserViewModel _userViewModel;
 
   Future<UserCredential> sigInGoogle() async {
     final googleUser = await _googleSignIn.signIn();
@@ -13,7 +17,13 @@ class LoginViewModel {
       accessToken: googleAuth.accessToken,
       idToken: googleAuth.idToken,
     );
-
+    user = Users({"email": googleUser.email});
+    _userViewModel = UserViewModel(user: user);
+    bool isSaved =
+        await _userViewModel.checkGoogleUserSaved(_userViewModel.email);
+    if (!isSaved) {
+      await _userViewModel.saveUser();
+    }
     return await FirebaseAuth.instance.signInWithCredential(credential);
   }
 
