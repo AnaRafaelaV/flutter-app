@@ -1,8 +1,9 @@
-import 'package:bhealth/view_models/sign_in_view_model.dart';
+import 'package:bhealth/widgets/email_sign_in_button.dart';
 import 'package:bhealth/widgets/google_sign_in_button_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class LogInPage extends StatefulWidget {
   @override
@@ -10,8 +11,6 @@ class LogInPage extends StatefulWidget {
 }
 
 class _LogInPageState extends State<LogInPage> {
-  final SigInViewModel _sigInVM = SigInViewModel();
-
   Widget _buildBody() {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
@@ -25,29 +24,22 @@ class _LogInPageState extends State<LogInPage> {
           Spacer(
             flex: 2,
           ),
-          GoogleButtonWidget(signInVM: _sigInVM),
+          GoogleButtonWidget(),
           SizedBox(
             height: 15,
           ),
-          ElevatedButton(
-            child: Text("SigIn with E-mail"),
-            onPressed: () {
-              print("E-mail");
-              //showDialogEnterEmail(context);
-            },
-          ),
+          EmailSignInButtonWidget(),
           SizedBox(
             height: 10,
           ),
           TextButton(
-              child: Text(
-                "Terms of service",
-                style: TextStyle(
-                    fontSize: 15, decoration: TextDecoration.underline),
-              ),
-              onPressed: () {
-                //=> launch("http://bhealth.bclose.pt/"),
-              }),
+            child: Text(
+              "Terms of service",
+              style:
+                  TextStyle(fontSize: 15, decoration: TextDecoration.underline),
+            ),
+            onPressed: () async => await launch("http://bhealth.bclose.pt/"),
+          ),
           SizedBox(
             width: double.infinity,
             height: 10,

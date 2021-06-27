@@ -1,21 +1,23 @@
 import 'package:bhealth/pages/home_screen_page.dart';
-import 'package:bhealth/view_models/sign_in_view_model.dart';
+import 'package:bhealth/view_models/login_view_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class GoogleButtonWidget extends StatelessWidget {
-  final SigInViewModel signInVM;
-  void _sigIn(BuildContext context) async {
-    try {
-      await signInVM.sigInGoogle();
+  LoginViewModel _loginViewModel = LoginViewModel();
+
+  Future<bool> _sigIn(BuildContext context) async {
+    bool isLoggedIn = false;
+    final userCredentials = await _loginViewModel.sigInGoogle();
+    isLoggedIn = userCredentials != null;
+    if (isLoggedIn) {
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => HomeScreenPage()));
-    } catch (error) {
-      print("ERROR - $error");
     }
+    return isLoggedIn;
   }
 
-  GoogleButtonWidget({required this.signInVM});
+  GoogleButtonWidget();
 
   @override
   Widget build(BuildContext context) {
@@ -36,12 +38,12 @@ class GoogleButtonWidget extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
           child: Row(
-            mainAxisSize: MainAxisSize.min,
+            mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Image(
                 image: AssetImage("assets/images/google_logo.png"),
-                height: 35.0,
+                height: 20.0,
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 10),
