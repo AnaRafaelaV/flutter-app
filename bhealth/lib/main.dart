@@ -20,6 +20,7 @@ class BHealthApp extends StatelessWidget {
   }
 }
 
+//if user had already logged in on app redirects to HomeScreen otherwise redirects to LogInPage
 class Wrapper extends StatefulWidget {
   @override
   _WrapperSate createState() => _WrapperSate();
@@ -28,6 +29,8 @@ class Wrapper extends StatefulWidget {
 class _WrapperSate extends State<Wrapper> {
   late Widget initial = LogInPage();
   LoginViewModel _loginViewModel = LoginViewModel();
+
+  //cheks if user is already logged in
   Future<Widget> _checkUserLoggedIn() async {
     bool isLogged = false;
     isLogged = await _loginViewModel.isUserrLoggedIn();
