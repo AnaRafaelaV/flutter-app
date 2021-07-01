@@ -1,9 +1,10 @@
 import 'package:bhealth/models/user.dart';
 import 'package:bhealth/view_models/user_view_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-class LoginViewModel {
+class LoginViewModel extends ChangeNotifier {
   String message = "";
   late Users user;
   final GoogleSignIn _googleSignIn = GoogleSignIn();
@@ -52,11 +53,13 @@ class LoginViewModel {
   }
 
   //chek if user is already looged in the app
-  Future<bool> isUserrLoggedIn() async {
-    User user = await FirebaseAuth.instance.currentUser!;
-    if (user != null) {
-      return true;
+  Future<bool> isUserLoggedIn() async {
+    bool isLooged = true;
+    User? user = await FirebaseAuth.instance.currentUser;
+    if (user == null) {
+      isLooged = false;
     }
-    return false;
+    notifyListeners();
+    return isLooged;
   }
 }

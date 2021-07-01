@@ -12,7 +12,7 @@ class GoogleButtonWidget extends StatelessWidget {
     isLoggedIn = userCredentials != null;
     if (isLoggedIn) {
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => HomeScreenPage()));
+          context, MaterialPageRoute(builder: (context) => HomeScreen()));
     }
     return isLoggedIn;
   }

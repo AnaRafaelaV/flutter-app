@@ -1,8 +1,9 @@
-import 'package:bhealth/pages/home_page.dart';
 import 'package:bhealth/pages/login_page.dart';
+import 'package:bhealth/utils/app_navigator.dart';
 import 'package:bhealth/view_models/login_view_model.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,40 +16,37 @@ class BHealthApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "BHealth",
-      home: Wrapper(),
+      home: ChangeNotifierProvider(
+        create: (context) => LoginViewModel(),
+        child: Wrapper(),
+      ),
     );
   }
 }
 
 //if user had already logged in on app redirects to HomeScreen otherwise redirects to LogInPage
-class Wrapper extends StatefulWidget {
-  @override
-  _WrapperSate createState() => _WrapperSate();
-}
-
-class _WrapperSate extends State<Wrapper> {
+class Wrapper extends StatelessWidget {
+  final AppNavivator _appNavivator = AppNavivator();
+  final LoginViewModel _loginViewModel = LoginViewModel();
   late Widget initial = LogInPage();
-  LoginViewModel _loginViewModel = LoginViewModel();
 
-  //cheks if user is already logged in
-  Future<Widget> _checkUserLoggedIn() async {
-    bool isLogged = false;
-    isLogged = await _loginViewModel.isUserrLoggedIn();
+  Future<Widget> _checkUserIsLogged(BuildContext context) async {
+    bool isLogged = await _loginViewModel.isUserLoggedIn();
     if (isLogged) {
-      setState(() {
-        initial = HomeScreenPage();
-      });
-    } else {
-      setState(() {
-        initial = LogInPage();
-      });
+      return _appNavivator.navigateToHomeScreen(context);
     }
-    return initial;
+    return _appNavivator.navigateToLoginScreen(context);
+  }
+
+  void _setWidget(BuildContext context) async {
+    initial = await _checkUserIsLogged(context);
   }
 
   @override
   Widget build(BuildContext context) {
-    _checkUserLoggedIn();
+    _setWidget(context);
+    Provider.of<LoginViewModel>(context, listen: true).isUserLoggedIn();
+
     return initial;
   }
 }

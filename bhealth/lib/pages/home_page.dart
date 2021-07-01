@@ -4,7 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hexcolor/hexcolor.dart';
 
-class HomeScreenPage extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
+  @override
+  _HomeScreenSate createState() => _HomeScreenSate();
+}
+
+class _HomeScreenSate extends State<HomeScreen> {
+  int _currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,67 +19,50 @@ class HomeScreenPage extends StatelessWidget {
         title: Text("B Close"),
         centerTitle: true,
         elevation: 0,
-        leading: Icon(
-          Icons.menu,
-        ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         showSelectedLabels: false,
         showUnselectedLabels: false,
         type: BottomNavigationBarType.fixed,
-        selectedFontSize: 0,
-        unselectedFontSize: 0,
-        onTap: (value) {},
-        currentIndex: 0,
+        selectedFontSize: 30,
+        unselectedFontSize: 30,
+        onTap: (value) {
+          _currentIndex = value;
+        },
+        currentIndex: _currentIndex,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
               icon: SvgPicture.asset(
                 homeIcon,
-                height: 40,
-                width: 40,
-                color: //_selectedIndex == 0
-                    //? HexColor("#0081F7")
-                    HexColor("#707070"),
+                color: _currentIndex == 0
+                    ? HexColor("#0081F7")
+                    : HexColor("#707070"),
               ),
-              label: ''),
+              label: ""),
           BottomNavigationBarItem(
               icon: SvgPicture.asset(
-                calendarIcon,
-                height: 30,
-                width: 30,
-                color: //_selectedIndex == 1
-                    // HexColor("#0081F7")
-                    HexColor("#707070"),
+                notificationIcon,
+                color: _currentIndex == 1
+                    ? HexColor("#0081F7")
+                    : HexColor("#707070"),
               ),
-              label: ''),
-          BottomNavigationBarItem(
-              icon: SvgPicture.asset(
-                addIcon,
-                height: 50,
-                width: 50,
-                color: HexColor("#0081F7"),
-              ),
-              label: ''),
+              label: ""),
           BottomNavigationBarItem(
               icon: SvgPicture.asset(
                 chatIcon,
-                height: 35,
-                width: 35,
-                color: //_selectedIndex == 3
-                    //? HexColor("#0081F7")
-                    HexColor("#707070"),
+                color: _currentIndex == 2
+                    ? HexColor("#0081F7")
+                    : HexColor("#707070"),
               ),
-              label: ''),
+              label: ""),
           BottomNavigationBarItem(
               icon: SvgPicture.asset(
-                profileIcon,
-                height: 40,
-                width: 40,
-                color: // _selectedIndex == 4
-                    //? HexColor("#0081F7")
-                    HexColor("#707070"),
+                calendarIcon,
+                color: _currentIndex == 3
+                    ? HexColor("#0081F7")
+                    : HexColor("#707070"),
               ),
-              label: ''),
+              label: ""),
         ],
       ),
     );
