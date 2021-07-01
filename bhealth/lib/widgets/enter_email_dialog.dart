@@ -1,18 +1,17 @@
 import 'package:bhealth/view_models/login_view_model.dart';
-import 'package:bhealth/widgets/enter_password_dailog.dart';
+import 'package:bhealth/widgets/enter_password_dialog.dart';
 import 'package:flutter/material.dart';
 
 class EnterEmailDialog extends StatelessWidget {
+  final GlobalKey<FormState> _form = GlobalKey<FormState>();
   final TextEditingController controllerEmail;
-  LoginViewModel _loginViewModel = LoginViewModel();
-
-  bool isRegistered = false;
+  final LoginViewModel _loginViewModel = LoginViewModel();
 
   EnterEmailDialog(this.controllerEmail);
 
-  final GlobalKey<FormState> _form = GlobalKey<FormState>();
-
+  //private function that checks if the email inserted is registered on firebase and calls the EnterPasswordClass
   void _showInsertPassword(BuildContext context) async {
+    bool isRegistered = false;
     if (_form.currentState!.validate()) {
       isRegistered =
           await _loginViewModel.isEmailRegistered(controllerEmail.text);

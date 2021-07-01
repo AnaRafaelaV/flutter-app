@@ -9,6 +9,7 @@ class LoginViewModel {
   final GoogleSignIn _googleSignIn = GoogleSignIn();
   late UserViewModel _userViewModel;
 
+  //log user with google account
   Future<UserCredential> sigInGoogle() async {
     final googleUser = await _googleSignIn.signIn();
 
@@ -26,6 +27,7 @@ class LoginViewModel {
     return await FirebaseAuth.instance.signInWithCredential(credential);
   }
 
+  //log user with email and password
   Future<bool> login(String email, String password) async {
     bool isLoggedIn = false;
     try {
@@ -40,6 +42,7 @@ class LoginViewModel {
     return isLoggedIn;
   }
 
+  //check if email is registered to log in
   Future<bool> isEmailRegistered(String email) async {
     bool isRegistered = false;
     final List<String> providers =
@@ -48,7 +51,8 @@ class LoginViewModel {
     return !isRegistered;
   }
 
-  Future<bool> hasCurrentUser() async {
+  //chek if user is already looged in the app
+  Future<bool> isUserrLoggedIn() async {
     User user = await FirebaseAuth.instance.currentUser!;
     if (user != null) {
       return true;

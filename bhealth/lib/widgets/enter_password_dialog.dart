@@ -1,4 +1,8 @@
-import 'package:bhealth/pages/home_screen_page.dart';
+/*this class body depends on if the email entered previously is already registered on firebase or not
+if not asks the user to insert a password and confirm that and calls the view model function to register the user
+otherwise only cheks if password is valid and logs user on the app*/
+
+import 'package:bhealth/utils/app_navigator.dart';
 import 'package:bhealth/view_models/login_view_model.dart';
 import 'package:bhealth/view_models/register_view_model.dart';
 import 'package:flutter/material.dart';
@@ -23,11 +27,13 @@ class _EnterPasswordDialogState extends State<EnterPasswordDialog> {
   final GlobalKey<FormState> _form = GlobalKey<FormState>();
   final TextEditingController _pass = TextEditingController();
   final TextEditingController _confirmPass = TextEditingController();
+  final AppNavivator _appNavivator = AppNavivator();
+
   String message = "";
+  final RegisterViewModel _registerViewModel = RegisterViewModel();
+  final LoginViewModel _loginViewModel = LoginViewModel();
 
-  RegisterViewModel _registerViewModel = RegisterViewModel();
-  LoginViewModel _loginViewModel = LoginViewModel();
-
+  //validates the form and calls the register function
   Future<bool> _registerUser(BuildContext context) async {
     bool savedSuccess = false;
     if (!isRegistered) {
@@ -37,14 +43,14 @@ class _EnterPasswordDialogState extends State<EnterPasswordDialog> {
 
         savedSuccess = await _registerViewModel.register(email, password);
         if (savedSuccess) {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => HomeScreenPage()));
+          _appNavivator.navigateToHomeScreen(context);
         }
       }
     }
     return savedSuccess;
   }
 
+  //validates the form and logs the user
   Future<bool> _loginUser(BuildContext context) async {
     bool isLoggedIn = false;
     if (_form.currentState!.validate()) {
@@ -54,8 +60,7 @@ class _EnterPasswordDialogState extends State<EnterPasswordDialog> {
       final result = await _loginViewModel.login(email, password);
       isLoggedIn = result;
       if (isLoggedIn) {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => HomeScreenPage()));
+        _appNavivator.navigateToHomeScreen(context);
       } else {
         setState(() {
           message = "Wrong password";

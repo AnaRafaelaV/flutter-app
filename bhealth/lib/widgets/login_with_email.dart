@@ -1,5 +1,5 @@
-import 'package:bhealth/widgets/enter_email_dialog.dart';
 import 'package:flutter/material.dart';
+import 'enter_email_dialog.dart';
 
 class EmailSignInButtonWidget extends StatelessWidget {
   EmailSignInButtonWidget();

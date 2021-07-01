@@ -1,6 +1,5 @@
 import 'package:bhealth/models/user.dart';
 import 'package:bhealth/view_models/user_view_model.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class RegisterViewModel {
@@ -8,6 +7,7 @@ class RegisterViewModel {
   late Users user;
   late UserViewModel _userViewModel;
 
+  //register user on Firebase Auth
   Future<bool> register(String email, String password) async {
     bool isRegistered = false;
     try {

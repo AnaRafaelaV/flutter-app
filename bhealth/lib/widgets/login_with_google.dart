@@ -1,4 +1,4 @@
-import 'package:bhealth/pages/home_screen_page.dart';
+import 'package:bhealth/pages/home_page.dart';
 import 'package:bhealth/view_models/login_view_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

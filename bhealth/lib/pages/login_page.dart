@@ -1,5 +1,6 @@
-import 'package:bhealth/widgets/email_sign_in_button.dart';
-import 'package:bhealth/widgets/google_sign_in_button_widget.dart';
+import 'package:bhealth/utils/bhealth_assets.dart';
+import 'package:bhealth/widgets/login_with_email.dart';
+import 'package:bhealth/widgets/login_with_google.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -20,7 +21,7 @@ class _LogInPageState extends State<LogInPage> {
           Spacer(
             flex: 1,
           ),
-          Image.asset('assets/images/bclose.png'),
+          Image.asset(bhealthLogo),
           Spacer(
             flex: 2,
           ),

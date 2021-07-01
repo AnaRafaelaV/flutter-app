@@ -1,4 +1,4 @@
-import 'package:bhealth/pages/home_screen_page.dart';
+import 'package:bhealth/pages/home_page.dart';
 import 'package:bhealth/pages/login_page.dart';
 import 'package:bhealth/view_models/login_view_model.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -30,7 +30,7 @@ class _WrapperSate extends State<Wrapper> {
   LoginViewModel _loginViewModel = LoginViewModel();
   Future<Widget> _checkUserLoggedIn() async {
     bool isLogged = false;
-    isLogged = await _loginViewModel.hasCurrentUser();
+    isLogged = await _loginViewModel.isUserrLoggedIn();
     if (isLogged) {
       setState(() {
         initial = HomeScreenPage();
