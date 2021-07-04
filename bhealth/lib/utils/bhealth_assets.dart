@@ -5,3 +5,7 @@ const profileIcon = "assets/icons/profile_icon.svg";
 const googleLogo = "assets/images/google_logo.png";
 const bhealthLogo = "assets/images/bclose.png";
 const notificationIcon = "assets/icons/notifications_bhelth.svg";
+const bcloseImage = "assets/images/bclose_wtext.png";
+const passwordIcon = "assets/icons/password.svg";
+const emailIcon = "assets/icons/email.svg";
+const whiteLogo = "assets/images/bclose_white.png";
