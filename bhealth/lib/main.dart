@@ -18,7 +18,10 @@ class BHealthApp extends StatelessWidget {
         future: _initialization,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
-            return Wrapper();
+            Future.delayed(const Duration(seconds: 2), () {
+              Navigator.pushReplacement(
+                  context, MaterialPageRoute(builder: (context) => Wrapper()));
+            });
           }
           return LoadingScreen();
         },

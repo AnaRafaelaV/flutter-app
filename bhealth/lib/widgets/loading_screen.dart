@@ -12,14 +12,20 @@ class LoadingScreen extends StatelessWidget {
         child: Center(
             child: Column(
           children: <Widget>[
+            SizedBox(
+              height: 200,
+            ),
             Image.asset(whiteLogo),
             SizedBox(
-              height: 30,
+              height: 15,
             ),
-            LoadingIndicator(
-              indicatorType: Indicator.ballPulse,
-              color: Colors.white,
-            )
+            Container(
+              height: 15,
+              child: LoadingIndicator(
+                indicatorType: Indicator.ballPulse,
+                color: Colors.white,
+              ),
+            ),
           ],
         )),
       ),
