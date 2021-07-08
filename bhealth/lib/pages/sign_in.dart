@@ -23,7 +23,6 @@ class _SigninPageState extends State<SigninPage> {
             ),
             SigninForm(),
             Container(
-              margin: EdgeInsets.only(left: 30, right: 30),
               child: RichText(
                 textAlign: TextAlign.center,
                 text: new TextSpan(

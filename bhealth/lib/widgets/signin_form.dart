@@ -85,22 +85,44 @@ class _SigninFormState extends State<SigninForm> {
                 ],
               ),
             ),
-            Container(
-              width: MediaQuery.of(context).size.width / 2,
-              padding: EdgeInsets.only(top: 15),
-              child: OutlinedButton(
-                child: Text(
-                  'Sign in',
-                  style: TextStyle(fontSize: 18, color: Colors.white),
+            Row(
+              children: [
+                Container(
+                  width: MediaQuery.of(context).size.width / 2,
+                  padding: EdgeInsets.only(left: 20, right: 5, top: 15),
+                  child: OutlinedButton(
+                    child: Text(
+                      'Sign up',
+                      style: TextStyle(fontSize: 18, color: Colors.white),
+                    ),
+                    style: OutlinedButton.styleFrom(
+                      side: BorderSide(width: 1.0, color: HexColor("#B9D329")),
+                      backgroundColor: HexColor("#B9D329"),
+                      shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(30))),
+                    ),
+                    onPressed: () {},
+                  ),
                 ),
-                style: OutlinedButton.styleFrom(
-                  side: BorderSide(width: 1.0, color: HexColor("#B9D329")),
-                  backgroundColor: HexColor("#B9D329"),
-                  shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(30))),
+                Container(
+                  width: MediaQuery.of(context).size.width / 2,
+                  padding: EdgeInsets.only(left: 5, right: 20, top: 15),
+                  child: OutlinedButton(
+                    child: Text(
+                      'Language',
+                      style:
+                          TextStyle(fontSize: 18, color: HexColor("#B9D329")),
+                    ),
+                    style: OutlinedButton.styleFrom(
+                      side: BorderSide(width: 1.0, color: HexColor("#B9D329")),
+                      backgroundColor: Colors.white,
+                      shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(30))),
+                    ),
+                    onPressed: () {},
+                  ),
                 ),
-                onPressed: () {},
-              ),
+              ],
             ),
             Container(
               padding: EdgeInsets.only(top: 10),

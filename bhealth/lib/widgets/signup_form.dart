@@ -1,6 +1,7 @@
 import 'package:bhealth/utils/bhealth_assets.dart';
 import 'package:bhealth/view_models/sign_up_view_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hexcolor/hexcolor.dart';
 
