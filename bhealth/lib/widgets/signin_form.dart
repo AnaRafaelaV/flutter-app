@@ -1,8 +1,6 @@
 import 'package:bhealth/utils/bhealth_assets.dart';
 import 'package:bhealth/view_models/sign_in_view_model.dart';
-import 'package:bhealth/widgets/terms_web_view.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -56,7 +54,6 @@ class _SigninFormState extends State<SigninForm> {
                         border: InputBorder.none,
                         hintText: 'Email',
                       ),
-                      autofocus: true,
                       onChanged: (value) {
                         setState(() {});
                       },
@@ -92,7 +89,7 @@ class _SigninFormState extends State<SigninForm> {
                   padding: EdgeInsets.only(left: 20, right: 5, top: 15),
                   child: OutlinedButton(
                     child: Text(
-                      'Sign up',
+                      'Sign in',
                       style: TextStyle(fontSize: 18, color: Colors.white),
                     ),
                     style: OutlinedButton.styleFrom(

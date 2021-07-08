@@ -71,11 +71,12 @@ class _SignupFormState extends State<SignupForm> {
                       child: TextField(
                         decoration: InputDecoration(
                           border: InputBorder.none,
-                          icon: SvgPicture.asset(userIcon),
+                          icon: SvgPicture.asset(
+                            userIcon,
+                          ),
                           hintText: 'Nome',
                         ),
                         controller: _name,
-                        autofocus: true,
                         onChanged: (value) {
                           setState(() {
                             nameMessage = "";
@@ -100,7 +101,6 @@ class _SignupFormState extends State<SignupForm> {
                           hintText: 'Email',
                         ),
                         controller: _email,
-                        autofocus: true,
                         onChanged: (value) {
                           setState(() {
                             emailMessage = "";

@@ -10,22 +10,11 @@ class LoadingScreen extends StatelessWidget {
       body: Container(
         color: HexColor("#B9D329"),
         child: Center(
-            child: Column(
-          children: <Widget>[
-            Container(
-              padding: EdgeInsets.only(
-                  top: MediaQuery.of(context).size.height / 2.5),
-              child: Image.asset(whiteLogo),
-            ),
-            Container(
-              height: 20,
-              child: LoadingIndicator(
-                indicatorType: Indicator.ballPulse,
-                color: Colors.white,
-              ),
-            ),
-          ],
-        )),
+          child: Container(
+            width: MediaQuery.of(context).size.width / 1.2,
+            child: Image.asset(whiteLogo),
+          ),
+        ),
       ),
     );
   }
