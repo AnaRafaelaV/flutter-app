@@ -125,37 +125,6 @@ class _SigninFormState extends State<SigninForm> {
                 onPressed: () {},
               ),
             ),
-            Container(
-              padding:
-                  EdgeInsets.only(left: 30, top: 10, bottom: 10, right: 30),
-              child: RichText(
-                textAlign: TextAlign.center,
-                text: new TextSpan(
-                  style: new TextStyle(
-                    fontSize: 14.0,
-                    color: Colors.black,
-                  ),
-                  children: <TextSpan>[
-                    new TextSpan(text: 'By signing in you agree to our '),
-                    new TextSpan(
-                        text: 'Terms & Conditions ',
-                        style: new TextStyle(fontWeight: FontWeight.bold),
-                        recognizer: new TapGestureRecognizer()
-                          ..onTap = () {
-                            Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        TermsAndConditionsWebView()));
-                          }),
-                    new TextSpan(text: 'and '),
-                    new TextSpan(
-                        text: 'Privacy Policy',
-                        style: new TextStyle(fontWeight: FontWeight.bold)),
-                  ],
-                ),
-              ),
-            ),
           ],
         ),
       ),

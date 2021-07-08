@@ -8,19 +8,17 @@ class LoadingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: HexColor("#c1d82f"),
+        color: HexColor("#B9D329"),
         child: Center(
             child: Column(
           children: <Widget>[
-            SizedBox(
-              height: 200,
-            ),
-            Image.asset(whiteLogo),
-            SizedBox(
-              height: 15,
+            Container(
+              padding: EdgeInsets.only(
+                  top: MediaQuery.of(context).size.height / 2.5),
+              child: Image.asset(whiteLogo),
             ),
             Container(
-              height: 15,
+              height: 20,
               child: LoadingIndicator(
                 indicatorType: Indicator.ballPulse,
                 color: Colors.white,

@@ -25,8 +25,6 @@ class _SignupPageState extends State<SignupPage> {
             ),
             SignupForm(),
             Container(
-              padding:
-                  EdgeInsets.only(left: 30, top: 10, bottom: 10, right: 30),
               child: RichText(
                 textAlign: TextAlign.center,
                 text: new TextSpan(

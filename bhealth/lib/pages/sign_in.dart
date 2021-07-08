@@ -17,19 +17,11 @@ class _SigninPageState extends State<SigninPage> {
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            SizedBox(
-              height: 100,
-            ),
             Container(
+              padding: EdgeInsets.only(top: 50, bottom: 100),
               child: Image.asset(bcloseLogo),
             ),
-            SizedBox(
-              height: 100,
-            ),
             SigninForm(),
-            SizedBox(
-              height: 40,
-            ),
             Container(
               margin: EdgeInsets.only(left: 30, right: 30),
               child: RichText(
