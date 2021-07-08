@@ -1,5 +1,5 @@
+import 'package:bhealth/pages/sign_up.dart';
 import 'package:bhealth/widgets/loading_screen.dart';
-import 'package:bhealth/widgets/terms_web_view.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -33,7 +33,7 @@ class BHealthApp extends StatelessWidget {
 class Wrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return TermsAndConditionsWebView();
+    return Sign();
   }
 } 
 //if user had already logged in on app redirects to HomeScreen otherwise redirects to LogInPage

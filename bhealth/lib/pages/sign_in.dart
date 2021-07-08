@@ -1,4 +1,3 @@
-import 'package:bhealth/pages/sign_up.dart';
 import 'package:bhealth/utils/bhealth_assets.dart';
 import 'package:bhealth/widgets/signin_form.dart';
 import 'package:bhealth/widgets/terms_web_view.dart';
@@ -22,7 +21,7 @@ class _SigninPageState extends State<SigninPage> {
               height: 100,
             ),
             Container(
-              child: Image.asset(bcloseImage),
+              child: Image.asset(bcloseLogo),
             ),
             SizedBox(
               height: 100,

@@ -1,28 +1,36 @@
 import 'package:bhealth/models/user.dart';
 import 'package:bhealth/view_models/users_view_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 
-class SignUpViewModel extends ChangeNotifier {
-  String message = "";
+class SignUpViewModel {
   late Users user;
   late UsersViewModel _userViewModel;
 
-  Future<bool> register(String email, String password) async {
+  Future<bool> register(String email, String password, String name) async {
     bool isRegistered = false;
+
     try {
       final userCredentials = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
+
       isRegistered = userCredentials != null;
-      if (isRegistered) {}
-    } on FirebaseAuthException catch (e) {
-      if (e.message == "email-already-in-use") {
-        message = "Email already used";
+
+      if (isRegistered) {
+        user = Users(name, "", email, false, true, []);
+        _userViewModel = UsersViewModel(user: user);
+        await _userViewModel.saveUser(name, "", email, false, true, []);
       }
-      notifyListeners();
     } catch (e) {
       print("ERROR - $e");
     }
+
     return isRegistered;
+  }
+
+  bool passwordsMatch(String password, String passwordConfirm) {
+    if (password == passwordConfirm) {
+      return true;
+    }
+    return false;
   }
 }

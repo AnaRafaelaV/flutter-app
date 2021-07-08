@@ -19,21 +19,14 @@ class _SignupPageState extends State<SignupPage> {
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            SizedBox(
-              height: 50,
-            ),
             Container(
-              child: Image.asset(bcloseImage),
-            ),
-            SizedBox(
-              height: 50,
+              padding: EdgeInsets.only(top: 50, bottom: 50),
+              child: Image.asset(bcloseLogo),
             ),
             SignupForm(),
-            SizedBox(
-              height: 15,
-            ),
             Container(
-              margin: EdgeInsets.only(left: 30, right: 30),
+              padding:
+                  EdgeInsets.only(left: 30, top: 10, bottom: 10, right: 30),
               child: RichText(
                 textAlign: TextAlign.center,
                 text: new TextSpan(
@@ -76,7 +69,7 @@ class Sign extends StatelessWidget {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: HexColor("#c1d82f"),
+          backgroundColor: HexColor("#B9D329"),
           title: TabBar(
             indicatorColor: Colors.white,
             tabs: <Widget>[

@@ -68,12 +68,13 @@ flutter:
     - assets/icons/calendar_today.svg
     - assets/icons/chat_icon.svg
     - assets/icons/home_icon.svg
-    - assets/icons/profile_icon.svg
+    - assets/icons/user.svg
     - assets/icons/notifications_bhelth.svg
     - assets/images/bclose_wtext.png
     - assets/icons/password.svg
     - assets/icons/email.svg
     - assets/images/bclose_white.png
+    - assets/images/bclose_logo.png
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

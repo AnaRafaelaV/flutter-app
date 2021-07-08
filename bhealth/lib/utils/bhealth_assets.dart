@@ -1,7 +1,7 @@
 const calendarIcon = "assets/icons/calendar_today.svg";
 const chatIcon = "assets/icons/chat_icon.svg";
 const homeIcon = "assets/icons/home_icon.svg";
-const profileIcon = "assets/icons/profile_icon.svg";
+const userIcon = "assets/icons/user.svg";
 const googleLogo = "assets/images/google_logo.png";
 const bhealthLogo = "assets/images/bclose.png";
 const notificationIcon = "assets/icons/notifications_bhelth.svg";
@@ -9,3 +9,4 @@ const bcloseImage = "assets/images/bclose_wtext.png";
 const passwordIcon = "assets/icons/password.svg";
 const emailIcon = "assets/icons/email.svg";
 const whiteLogo = "assets/images/bclose_white.png";
+const bcloseLogo = "assets/images/bclose_logo.png";

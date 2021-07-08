@@ -1,4 +1,3 @@
-import 'package:bhealth/pages/sign_up.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -33,10 +32,7 @@ class TermsAndConditionsWebView extends StatelessWidget {
               "Aceito",
               style: TextStyle(color: Colors.black, fontSize: 18),
             ),
-            onPressed: () {
-              Navigator.pushReplacement(
-                  context, MaterialPageRoute(builder: (context) => Sign()));
-            }),
+            onPressed: () {}),
       ),
     );
   }
