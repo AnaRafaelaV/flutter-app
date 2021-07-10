@@ -1,3 +1,4 @@
+import 'package:bhealth/utils/app_navigator.dart';
 import 'package:bhealth/utils/bhealth_assets.dart';
 import 'package:bhealth/view_models/sign_up_view_model.dart';
 import 'package:flutter/material.dart';
@@ -22,25 +23,93 @@ class _SignupFormState extends State<SignupForm> {
   String passwordMessage = "";
 
   SignUpViewModel _signUpViewModel = SignUpViewModel();
-  bool _passwordMatchs = true;
+  bool _isFormValid = false;
 
-  bool _passwordsMatch() {
-    String password = _pass.text;
-    String passwordConfirm = _passConfirm.text;
-    _passwordMatchs =
-        _signUpViewModel.passwordsMatch(password, passwordConfirm);
-    return _passwordMatchs;
+  _validateForm() async {
+    String name = _name.text.trim();
+    String email = _email.text.trim();
+    String password = _pass.text.trim();
+    String passwordConfirm = _passConfirm.text.trim();
+    _signUpViewModel.validateFormToSignUp(
+        name, email, password, passwordConfirm);
+
+    if (_signUpViewModel.nameValid &&
+        _signUpViewModel.emailValid &&
+        _signUpViewModel.nameValid &&
+        _signUpViewModel.passwordConfirmValid) {
+      setState(() {
+        _isFormValid = true;
+      });
+    } else {
+      if (!_signUpViewModel.nameValid) {
+        nameMessage = "Deve indicar o seu nome.";
+      }
+      if (!_signUpViewModel.emailValid) {
+        emailMessage = "Introduza um e-mail válido.";
+      }
+      if (!_signUpViewModel.passwordValid) {
+        passwordMessage =
+            "Deve introduzir uma palavra-passe com pelo menos 6 carateres.";
+      }
+      if (_signUpViewModel.passwordValid &&
+          !_signUpViewModel.passwordConfirmValid) {
+        passwordMessage = "As palavras-passe inseridas não coincidem.";
+      }
+      setState(() {
+        _isFormValid = false;
+        nameMessage = nameMessage;
+        emailMessage = emailMessage;
+        passwordMessage = passwordMessage;
+      });
+    }
+  }
+
+  Future<void> _showDialog(BuildContext context) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Deve preencher todos os campos do formulário'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Padding(
+                    padding: EdgeInsets.only(bottom: 10),
+                    child: Text(nameMessage)),
+                Padding(
+                    padding: EdgeInsets.only(bottom: 10),
+                    child: Text(emailMessage)),
+                Padding(
+                    padding: EdgeInsets.only(bottom: 10),
+                    child: Text(passwordMessage))
+              ],
+            ),
+          ),
+          actions: [
+            TextButton(
+                onPressed: () {
+                  AppNavigator().navigateToPreviousPage(context);
+                },
+                child: Text(
+                  "Ok",
+                  style: TextStyle(color: HexColor("#B9D329")),
+                ))
+          ],
+        );
+      },
+    );
   }
 
   _signUp() async {
-    String name = _name.text;
-    String email = _email.text;
-    String password = _pass.text;
+    String name = _name.text.trim();
+    String email = _email.text.trim();
+    String password = _pass.text.trim();
     await _signUpViewModel.register(email, password, name);
   }
 
-  _resetInputValidation() {
-    _form.currentState!.validate();
+  _registerWithGoogle() async {
+    await _signUpViewModel.registerAndSignInWithGoogle();
   }
 
   @override
@@ -73,14 +142,16 @@ class _SignupFormState extends State<SignupForm> {
                           border: InputBorder.none,
                           icon: SvgPicture.asset(
                             userIcon,
+                            color: nameMessage == ""
+                                ? HexColor("#9d9d9d")
+                                : Colors.red,
                           ),
                           hintText: 'Nome',
                         ),
                         controller: _name,
-                        onChanged: (value) {
+                        onChanged: (velue) {
                           setState(() {
                             nameMessage = "";
-                            _resetInputValidation();
                           });
                         },
                       ),
@@ -96,15 +167,19 @@ class _SignupFormState extends State<SignupForm> {
                       ),
                       child: TextField(
                         decoration: InputDecoration(
-                          icon: SvgPicture.asset(emailIcon),
+                          icon: SvgPicture.asset(
+                            emailIcon,
+                            color: emailMessage == ""
+                                ? HexColor("#9d9d9d")
+                                : Colors.red,
+                          ),
                           border: InputBorder.none,
                           hintText: 'Email',
                         ),
                         controller: _email,
-                        onChanged: (value) {
+                        onChanged: (velue) {
                           setState(() {
                             emailMessage = "";
-                            _resetInputValidation();
                           });
                         },
                       ),
@@ -119,15 +194,19 @@ class _SignupFormState extends State<SignupForm> {
                       ),
                       child: TextField(
                         decoration: InputDecoration(
-                            icon: SvgPicture.asset(passwordIcon),
+                            icon: SvgPicture.asset(
+                              passwordIcon,
+                              color: passwordMessage == ""
+                                  ? HexColor("#9d9d9d")
+                                  : Colors.red,
+                            ),
                             border: InputBorder.none,
                             hintText: 'Password'),
                         obscureText: true,
                         controller: _pass,
-                        onChanged: (value) {
+                        onChanged: (velue) {
                           setState(() {
                             passwordMessage = "";
-                            _resetInputValidation();
                           });
                         },
                       ),
@@ -143,15 +222,19 @@ class _SignupFormState extends State<SignupForm> {
                       child: TextField(
                         obscureText: true,
                         decoration: InputDecoration(
-                          icon: SvgPicture.asset(passwordIcon),
+                          icon: SvgPicture.asset(
+                            passwordIcon,
+                            color: passwordMessage == ""
+                                ? HexColor("#9d9d9d")
+                                : Colors.red,
+                          ),
                           border: InputBorder.none,
                           hintText: 'Confirmar password',
                         ),
                         controller: _passConfirm,
-                        onChanged: (value) {
+                        onChanged: (velue) {
                           setState(() {
                             passwordMessage = "";
-                            _resetInputValidation();
                           });
                         },
                       ),
@@ -177,14 +260,13 @@ class _SignupFormState extends State<SignupForm> {
                             borderRadius:
                                 BorderRadius.all(Radius.circular(30))),
                       ),
-                      onPressed: () {
-                        if (_passwordsMatch() &&
-                            _form.currentState!.validate()) {
-                          _signUp();
+                      onPressed: () async {
+                        await _validateForm();
+                        if (!_isFormValid) {
+                          _showDialog(context);
                         } else {
-                          setState(() {
-                            _passwordMatchs = false;
-                          });
+                          await _signUp();
+                          AppNavigator().navigateToHomeScreen(context);
                         }
                       },
                     ),
@@ -231,7 +313,10 @@ class _SignupFormState extends State<SignupForm> {
                     width: 45,
                   ),
                   color: Colors.white,
-                  onPressed: () {},
+                  onPressed: () async {
+                    await _registerWithGoogle();
+                    AppNavigator().navigateToHomeScreen(context);
+                  },
                 ),
               ),
             ],

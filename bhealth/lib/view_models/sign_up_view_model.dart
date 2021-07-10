@@ -1,10 +1,35 @@
 import 'package:bhealth/models/user.dart';
 import 'package:bhealth/view_models/users_view_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class SignUpViewModel {
   late Users user;
-  late UsersViewModel _userViewModel;
+  late UsersViewModel _usersViewModel;
+  bool nameValid = false;
+  bool emailValid = false;
+  bool passwordValid = false;
+  bool passwordConfirmValid = false;
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
+
+  Future<UserCredential> registerAndSignInWithGoogle() async {
+    final googleUser = await _googleSignIn.signIn();
+
+    final googleAuth = await googleUser!.authentication;
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth.accessToken,
+      idToken: googleAuth.idToken,
+    );
+    String? name = googleUser.displayName != null ? googleUser.displayName : "";
+    user = Users(name!, "", googleUser.email, false, true, []);
+    _usersViewModel = UsersViewModel(user: user);
+    bool isSaved = await _usersViewModel.checkIfUserExists(googleUser.email);
+    if (!isSaved) {
+      await _usersViewModel
+          .saveUser(name, "", googleUser.email, false, true, []);
+    }
+    return await FirebaseAuth.instance.signInWithCredential(credential);
+  }
 
   Future<bool> register(String email, String password, String name) async {
     bool isRegistered = false;
@@ -17,8 +42,8 @@ class SignUpViewModel {
 
       if (isRegistered) {
         user = Users(name, "", email, false, true, []);
-        _userViewModel = UsersViewModel(user: user);
-        await _userViewModel.saveUser(name, "", email, false, true, []);
+        _usersViewModel = UsersViewModel(user: user);
+        await _usersViewModel.saveUser(name, "", email, false, true, []);
       }
     } catch (e) {
       print("ERROR - $e");
@@ -27,10 +52,36 @@ class SignUpViewModel {
     return isRegistered;
   }
 
-  bool passwordsMatch(String password, String passwordConfirm) {
+  bool _passwordsMatch(String password, String passwordConfirm) {
     if (password == passwordConfirm) {
       return true;
     }
     return false;
+  }
+
+  void validateFormToSignUp(
+      String name, String email, String password, String passwordConfirm) {
+    nameValid = false;
+    emailValid = false;
+    passwordValid = false;
+    passwordConfirmValid = false;
+    if (name != null && name.length > 0) {
+      nameValid = true;
+    }
+    if (email != null && email.length > 0) {
+      const pattern = r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$';
+      final regExp = RegExp(pattern);
+      if (regExp.hasMatch(email)) {
+        emailValid = true;
+      }
+    }
+    if (password != null && password.length > 5) {
+      passwordValid = true;
+    }
+    if (passwordConfirm != null && passwordConfirm.length > 5) {
+      if (_passwordsMatch(password, passwordConfirm)) {
+        passwordConfirmValid = true;
+      }
+    }
   }
 }
