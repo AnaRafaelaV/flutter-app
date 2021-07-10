@@ -10,3 +10,4 @@ const passwordIcon = "assets/icons/password.svg";
 const emailIcon = "assets/icons/email.svg";
 const whiteLogo = "assets/images/bclose_white.png";
 const bcloseLogo = "assets/images/bclose_logo.png";
+const backIcon = "assets/icons/back.svg";

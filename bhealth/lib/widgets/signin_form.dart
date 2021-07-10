@@ -11,7 +11,6 @@ class SigninForm extends StatefulWidget {
 }
 
 class _SigninFormState extends State<SigninForm> {
-  final GlobalKey<FormState> _form = GlobalKey<FormState>();
   final TextEditingController _controllerEmail = TextEditingController();
   final TextEditingController _pass = TextEditingController();
   final SignInViewModel _inViewModel = SignInViewModel();
@@ -29,7 +28,6 @@ class _SigninFormState extends State<SigninForm> {
       height: MediaQuery.of(context).size.height / 2,
       width: MediaQuery.of(context).size.width,
       child: Form(
-        key: _form,
         child: Column(
           children: <Widget>[
             Container(

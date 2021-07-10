@@ -1,18 +1,16 @@
 import 'package:bhealth/models/user.dart';
 import 'package:bhealth/view_models/users_view_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-class SignInViewModel extends ChangeNotifier {
+class SignInViewModel {
   String message = "";
   late Users user;
   late UsersViewModel _usersViewModel;
 
   final GoogleSignIn _googleSignIn = GoogleSignIn();
 
-  //log user with google account
-  Future<UserCredential> sigInGoogle() async {
+  Future<UserCredential> sigInWithGoogle() async {
     final googleUser = await _googleSignIn.signIn();
 
     final googleAuth = await googleUser!.authentication;
@@ -62,7 +60,6 @@ class SignInViewModel extends ChangeNotifier {
     if (user == null) {
       isLooged = false;
     }
-    notifyListeners();
     return isLooged;
   }
 }

@@ -31,13 +31,14 @@ class Users {
       "firstName": this.firstName,
       "lastName": this.lastName,
       "email": this.email,
-      "care_taker": this.careTakers != null && careTakers.isNotEmpty
-          ? this.careTakers.map((careTaker) => careTaker.toMap())
-          : [],
-      "in_private": this.inPrivate,
     };
+
     return {
       "general": general,
+      "in_private": this.inPrivate,
+      "care_taker": this.careTakers != null && careTakers.isNotEmpty
+          ? this.careTakers.map((careTaker) => careTaker.toMap())
+          : {},
     };
   }
 

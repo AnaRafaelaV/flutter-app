@@ -75,6 +75,7 @@ flutter:
     - assets/icons/email.svg
     - assets/images/bclose_white.png
     - assets/images/bclose_logo.png
+    - assets/icons/back.svg
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
