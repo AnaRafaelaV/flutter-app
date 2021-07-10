@@ -11,6 +11,7 @@ class SignUpViewModel {
   bool passwordValid = false;
   bool passwordConfirmValid = false;
   final GoogleSignIn _googleSignIn = GoogleSignIn();
+  String emailAlreadyInUse = "";
 
   Future<UserCredential> registerAndSignInWithGoogle() async {
     final googleUser = await _googleSignIn.signIn();
@@ -44,6 +45,12 @@ class SignUpViewModel {
         user = Users(name, "", email, false, true, []);
         _usersViewModel = UsersViewModel(user: user);
         await _usersViewModel.saveUser(name, "", email, false, true, []);
+        await FirebaseAuth.instance
+            .signInWithEmailAndPassword(email: email, password: password);
+      }
+    } on FirebaseAuthException catch (e) {
+      if (e.code == "email-already-in-use") {
+        emailAlreadyInUse = "Este email já tem conta associada";
       }
     } catch (e) {
       print("ERROR - $e");
@@ -65,6 +72,7 @@ class SignUpViewModel {
     emailValid = false;
     passwordValid = false;
     passwordConfirmValid = false;
+    emailAlreadyInUse = "";
     if (name != null && name.length > 0) {
       nameValid = true;
     }

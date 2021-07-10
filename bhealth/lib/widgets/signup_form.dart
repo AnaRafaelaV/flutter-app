@@ -266,7 +266,16 @@ class _SignupFormState extends State<SignupForm> {
                           _showDialog(context);
                         } else {
                           await _signUp();
-                          AppNavigator().navigateToHomeScreen(context);
+                          if (_signUpViewModel.emailAlreadyInUse != "") {
+                            setState(() {
+                              _isFormValid = false;
+                              passwordMessage =
+                                  _signUpViewModel.emailAlreadyInUse;
+                            });
+                            _showDialog(context);
+                          } else {
+                            AppNavigator().navigateToHomeScreen(context);
+                          }
                         }
                       },
                     ),
