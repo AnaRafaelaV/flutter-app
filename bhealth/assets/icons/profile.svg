@@ -1,8 +1,3 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="23.171" height="25.817" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2px">
-    <defs>
-      <style>
-        .a{}
-      </style>
-    </defs>
     <path class="a" d="M22.171 24.817v-2.646a5.293 5.293 0 00-5.293-5.293H6.293A5.293 5.293 0 001 22.171v2.646M16.878 6.293A5.293 5.293 0 1111.586 1a5.293 5.293 0 015.293 5.293z"/>
   </svg>

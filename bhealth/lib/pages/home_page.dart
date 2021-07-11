@@ -4,8 +4,6 @@ import 'package:bhealth/widgets/bottom_bar.dart';
 import 'package:bhealth/widgets/health_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:hexcolor/hexcolor.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -29,20 +27,33 @@ class _HomePageState extends State<HomePage> {
                   child: Container(
                     child: GridView.count(
                       padding: const EdgeInsets.all(20),
-                      crossAxisSpacing: 20,
-                      mainAxisSpacing: 20,
+                      crossAxisSpacing: 10,
+                      mainAxisSpacing: 10,
                       childAspectRatio: 1.5,
                       shrinkWrap: true,
                       scrollDirection: Axis.vertical,
                       physics: NeverScrollableScrollPhysics(),
                       crossAxisCount: 2,
                       children: <Widget>[
-                        HealthCart(),
-                        HealthCart(),
-                        HealthCart(),
-                        HealthCart(),
-                        HealthCart(),
-                        HealthCart(),
+                        HealthCard(
+                            icon: oximetro1,
+                            mainLabel: "Oxímetro",
+                            otherInfo: "SpO2"),
+                        HealthCard(
+                            icon: pressao,
+                            mainLabel: "Pressão",
+                            otherInfo: "Arterial"),
+                        HealthCard(
+                            icon: temp, mainLabel: "Temp.", otherInfo: "ºC"),
+                        HealthCard(
+                            icon: balanca,
+                            mainLabel: "Balança",
+                            otherInfo: "Kg/Lb"),
+                        HealthCard(
+                            icon: oximetro2,
+                            mainLabel: "Oxímetro",
+                            otherInfo: "SpO2"),
+                        AddHealthCard()
                       ],
                     ),
                   ),
