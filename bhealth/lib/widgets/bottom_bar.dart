@@ -13,11 +13,12 @@ class _BottomBarState extends State<BottomBar> {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
+      backgroundColor: HexColor("#B9D329"),
       showSelectedLabels: false,
       showUnselectedLabels: false,
       type: BottomNavigationBarType.fixed,
-      selectedFontSize: 30,
-      unselectedFontSize: 30,
+      selectedFontSize: 20,
+      unselectedFontSize: 20,
       onTap: (value) {
         _currentIndex = value;
       },
@@ -25,34 +26,23 @@ class _BottomBarState extends State<BottomBar> {
       items: <BottomNavigationBarItem>[
         BottomNavigationBarItem(
             icon: SvgPicture.asset(
-              homeIcon,
-              color: _currentIndex == 0
-                  ? HexColor("#0081F7")
-                  : HexColor("#707070"),
-            ),
-            label: ""),
-        BottomNavigationBarItem(
-            icon: SvgPicture.asset(
               notificationIcon,
-              color: _currentIndex == 1
-                  ? HexColor("#0081F7")
-                  : HexColor("#707070"),
-            ),
-            label: ""),
-        BottomNavigationBarItem(
-            icon: SvgPicture.asset(
-              chatIcon,
-              color: _currentIndex == 2
-                  ? HexColor("#0081F7")
-                  : HexColor("#707070"),
             ),
             label: ""),
         BottomNavigationBarItem(
             icon: SvgPicture.asset(
               calendarIcon,
-              color: _currentIndex == 3
-                  ? HexColor("#0081F7")
-                  : HexColor("#707070"),
+            ),
+            label: ""),
+        BottomNavigationBarItem(
+            icon: SvgPicture.asset(
+              sosIcon,
+            ),
+            label: ""),
+        BottomNavigationBarItem(icon: Image.asset(navBclose), label: ""),
+        BottomNavigationBarItem(
+            icon: SvgPicture.asset(
+              profileIcon,
             ),
             label: ""),
       ],

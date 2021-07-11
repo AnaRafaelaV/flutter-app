@@ -12,3 +12,6 @@ const whiteLogo = "assets/images/bclose_white.png";
 const bcloseLogo = "assets/images/bclose_logo.png";
 const backIcon = "assets/icons/back.svg";
 const bannerImage = "assets/images/banner.png";
+const sosIcon = "assets/icons/sos.svg";
+const navBclose = "assets/images/bclose_white_nav.png";
+const profileIcon = "assets/icons/profile.svg";
