@@ -1,3 +1,4 @@
+import 'package:bhealth/utils/app_navigator.dart';
 import 'package:bhealth/utils/bhealth_assets.dart';
 import 'package:bhealth/widgets/app_bar.dart';
 import 'package:bhealth/widgets/bottom_bar.dart';
@@ -14,7 +15,8 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BhealthAppBar(back: false, title: "", profile: true),
+      appBar: BhealthAppBar(
+          back: false, graph: false, share: false, title: "", profile: true),
       body: Container(
         child: ListView(
           children: <Widget>[
@@ -36,23 +38,45 @@ class _HomePageState extends State<HomePage> {
                       crossAxisCount: 2,
                       children: <Widget>[
                         HealthCard(
-                            icon: oximetro1,
-                            mainLabel: "Oxímetro",
-                            otherInfo: "SpO2"),
+                          icon: oximetro1,
+                          mainLabel: "Oxímetro",
+                          otherInfo: "SpO2",
+                          onTap: () {
+                            AppNavigator().navigateToPreviousPage(context);
+                          },
+                        ),
                         HealthCard(
-                            icon: pressao,
-                            mainLabel: "Pressão",
-                            otherInfo: "Arterial"),
+                          icon: pressao,
+                          mainLabel: "Pressão",
+                          otherInfo: "Arterial",
+                          onTap: () {
+                            AppNavigator().navigateToPreviousPage(context);
+                          },
+                        ),
                         HealthCard(
-                            icon: temp, mainLabel: "Temp.", otherInfo: "ºC"),
+                          icon: temp,
+                          mainLabel: "Temp.",
+                          otherInfo: "ºC",
+                          onTap: () {
+                            AppNavigator().navigateToTemperatureScreen(context);
+                          },
+                        ),
                         HealthCard(
-                            icon: balanca,
-                            mainLabel: "Balança",
-                            otherInfo: "Kg/Lb"),
+                          icon: balanca,
+                          mainLabel: "Balança",
+                          otherInfo: "Kg/Lb",
+                          onTap: () {
+                            AppNavigator().navigateToPreviousPage(context);
+                          },
+                        ),
                         HealthCard(
-                            icon: oximetro2,
-                            mainLabel: "Oxímetro",
-                            otherInfo: "SpO2"),
+                          icon: oximetro2,
+                          mainLabel: "Oxímetro",
+                          otherInfo: "SpO2",
+                          onTap: () {
+                            AppNavigator().navigateToPreviousPage(context);
+                          },
+                        ),
                         AddHealthCard()
                       ],
                     ),

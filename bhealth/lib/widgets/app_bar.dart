@@ -6,12 +6,18 @@ import 'package:hexcolor/hexcolor.dart';
 
 class BhealthAppBar extends StatelessWidget implements PreferredSizeWidget {
   final bool back;
+  final bool graph;
+  final bool share;
   final bool profile;
   final String title;
 
   MainAxisAlignment _alignment = MainAxisAlignment.spaceBetween;
   BhealthAppBar(
-      {required this.back, required this.title, required this.profile});
+      {required this.back,
+      required this.graph,
+      required this.share,
+      required this.title,
+      required this.profile});
 
   @override
   Widget build(BuildContext context) {
@@ -28,15 +34,38 @@ class BhealthAppBar extends StatelessWidget implements PreferredSizeWidget {
         child: Row(
           mainAxisAlignment: _alignment,
           children: <Widget>[
-            back
-                ? IconButton(
-                    icon: SvgPicture.asset(backIcon),
-                    iconSize: 38,
-                    onPressed: () {
-                      AppNavigator().navigateToPreviousPage(context);
-                    },
-                  )
-                : Container(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                back
+                    ? IconButton(
+                        icon: SvgPicture.asset(backIcon),
+                        iconSize: 38,
+                        onPressed: () {
+                          AppNavigator().navigateToPreviousPage(context);
+                        },
+                      )
+                    : Container(),
+                graph
+                    ? IconButton(
+                        icon: SvgPicture.asset(graphIcon),
+                        iconSize: 38,
+                        onPressed: () {
+                          AppNavigator().navigateToPreviousPage(context);
+                        },
+                      )
+                    : Container(),
+                share
+                    ? IconButton(
+                        icon: SvgPicture.asset(shareIcon),
+                        iconSize: 38,
+                        onPressed: () {
+                          AppNavigator().navigateToPreviousPage(context);
+                        },
+                      )
+                    : Container(),
+              ],
+            ),
             _titleExists
                 ? Container(
                     padding: EdgeInsets.only(right: 50),

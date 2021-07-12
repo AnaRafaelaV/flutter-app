@@ -86,6 +86,9 @@ flutter:
     - assets/icons/balanca.svg
     - assets/icons/oximetro2.svg
     - assets/icons/add.svg
+    - assets/images/termometro.png
+    - assets/icons/graph.svg
+    - assets/icons/share.svg
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

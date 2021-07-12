@@ -1,4 +1,5 @@
 import 'package:bhealth/pages/home_page.dart';
+import 'package:bhealth/pages/temperature.dart';
 import 'package:bhealth/view_models/home_page_view_model.dart';
 import 'package:bhealth/widgets/terms_web_view.dart';
 import 'package:flutter/material.dart';
@@ -23,5 +24,10 @@ class AppNavigator {
   navigateToTermsScreen(BuildContext context) {
     Navigator.push(context,
         MaterialPageRoute(builder: (context) => TermsAndConditionsWebView()));
+  }
+
+  navigateToTemperatureScreen(BuildContext context) {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => Temperature()));
   }
 }

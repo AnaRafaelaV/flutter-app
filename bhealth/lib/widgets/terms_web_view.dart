@@ -10,7 +10,11 @@ class TermsAndConditionsWebView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: BhealthAppBar(
-            back: true, title: "Termos e Condições", profile: false),
+            back: true,
+            graph: false,
+            share: false,
+            title: "Termos e Condições",
+            profile: false),
         body: Column(children: [
           Container(
             height: MediaQuery.of(context).size.height / 1.4,

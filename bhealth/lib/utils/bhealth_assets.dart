@@ -21,3 +21,6 @@ const temp = "assets/icons/temperatura.svg";
 const balanca = "assets/icons/balanca.svg";
 const oximetro2 = "assets/icons/oximetro2.svg";
 const addIcon = "assets/icons/add.svg";
+const tempImage37 = "assets/images/termometro.png";
+const graphIcon = "assets/icons/graph.svg";
+const shareIcon = "assets/icons/share.svg";
